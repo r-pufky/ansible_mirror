@@ -25,24 +25,24 @@
 
 - name: 'manage users | create mirror group'
   ansible.builtin.group:
-    name:  '{{ mirror_default_group.name }}'
-    gid:   '{{ mirror_default_group.gid }}'
+    name: '{{ mirror_default_group.name }}'
+    gid: '{{ mirror_default_group.gid }}'
     state: 'present'
   when: mirror_create_user and _mirror_group_exists.rc != 0
 
 - name: 'manage users | create mirror user (logins disabled)'
   ansible.builtin.user:
-    name:            '{{ mirror_default_user.name }}'
-    group:           '{{ mirror_default_user.group }}'
-    uid:             '{{ mirror_default_user.uid }}'
-    shell:           '{{ mirror_default_user.shell }}'
-    home:            '{{ mirror_default_user.home }}'
-    comment:         '{{ mirror_default_user.comment }}'
-    create_home:     '{{ mirror_default_user.create_home }}'
-    password:        '{{ mirror_default_user.password }}'
-    password_lock:   '{{ mirror_default_user.password_lock }}'
+    name: '{{ mirror_default_user.name }}'
+    group: '{{ mirror_default_user.group }}'
+    uid: '{{ mirror_default_user.uid }}'
+    shell: '{{ mirror_default_user.shell }}'
+    home: '{{ mirror_default_user.home }}'
+    comment: '{{ mirror_default_user.comment }}'
+    create_home: '{{ mirror_default_user.create_home }}'
+    password: '{{ mirror_default_user.password }}'
+    password_lock: '{{ mirror_default_user.password_lock }}'
     update_password: '{{ mirror_default_user.update_password }}'
-    expires:         '{{ mirror_default_user.expires }}'
-    system:          '{{ mirror_default_user.system }}'
-    state:           'present'
+    expires: '{{ mirror_default_user.expires }}'
+    system: '{{ mirror_default_user.system }}'
+    state: 'present'
   when: mirror_create_user and _mirror_user_exists.rc != 0

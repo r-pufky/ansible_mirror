@@ -10,7 +10,7 @@
 
 - name: 'clean | find existing installations'
   ansible.builtin.find:
-    paths:     '{{ mirror_default_install_dir }}'
+    paths: '{{ mirror_default_install_dir }}'
     file_type: 'directory'
     use_regex: true
     patterns:
@@ -20,7 +20,7 @@
 
 - name: 'clean | remove old versions'
   ansible.builtin.file:
-    path:  '{{ item.path }}'
+    path: '{{ item.path }}'
     state: 'absent'
   loop: '{{ _mirror_existing_installs.files }}'
   when: |

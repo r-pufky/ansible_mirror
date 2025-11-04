@@ -34,9 +34,9 @@
 
 - name: 'core | generate versioned locations'
   ansible.builtin.set_fact:
-    _mirror_url:         'https://api.github.com/repos/MichMich/MagicMirror/tarball/{{ _mirror_target }}'
+    _mirror_url: 'https://api.github.com/repos/MichMich/MagicMirror/tarball/{{ _mirror_target }}'
     _mirror_install_dir: '{{ mirror_default_install_dir }}/mirror-{{ _mirror_target }}'
-    _mirror_archive:     '/tmp/mirror-{{ _mirror_target }}.tar.gz'
+    _mirror_archive: '/tmp/mirror-{{ _mirror_target }}.tar.gz'
     _mirror_modules:     []
 
 - name: 'core | generate custom module list'

@@ -28,7 +28,7 @@
 
 - name: 'npm | install dependencies'
   community.general.npm:
-    path:  '{{ _mirror_install_dir }}'
+    path: '{{ _mirror_install_dir }}'
     state: 'latest'
   become: true
   become_user: '{{ mirror_user }}'

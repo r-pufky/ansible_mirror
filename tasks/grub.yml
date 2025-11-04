@@ -17,11 +17,11 @@
 
 - name: 'grub | set rfkill to unblock radio devices on boot'
   ansible.builtin.replace:
-    path:    '/etc/default/grub'
-    regexp:  '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
+    path: '/etc/default/grub'
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
     replace: '\1 {{ option }}={{ value }}\2'
   vars:
-    option:  'rfkill.default_state'
+    option: 'rfkill.default_state'
     value:   1
   notify:
     - 'update grub'
@@ -29,11 +29,11 @@
 
 - name: 'grub | set rfkill to disable airplane mode (hardware disable) on boot'
   ansible.builtin.replace:
-    path:    '/etc/default/grub'
-    regexp:  '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
+    path: '/etc/default/grub'
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
     replace: '\1 {{ option }}={{ value }}\2'
   vars:
-    option:  'rfkill.master_switch_mode'
+    option: 'rfkill.master_switch_mode'
     value:   0
   notify:
     - 'update grub'

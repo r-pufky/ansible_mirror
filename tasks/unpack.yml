@@ -12,7 +12,7 @@
 
 - name: 'unpack | create mirror directory'
   ansible.builtin.file:
-    path:  '{{ _mirror_install_dir }}'
+    path: '{{ _mirror_install_dir }}'
     owner: '{{ mirror_user }}'
     group: '{{ mirror_group }}'
     mode:  0750
@@ -20,13 +20,13 @@
 
 - name: 'unpack | unpack archive'
   ansible.builtin.unarchive:
-    src:        '{{ _mirror_archive }}'
+    src: '{{ _mirror_archive }}'
     remote_src: true
-    dest:       '{{ _mirror_install_dir }}'
-    creates:    '{{ _mirror_install_dir }}/modules/default/defaultmodules.js'
-    owner:      '{{ mirror_user }}'
-    group:      '{{ mirror_group }}'
-    mode:       'a-st,o-rwx'
+    dest: '{{ _mirror_install_dir }}'
+    creates: '{{ _mirror_install_dir }}/modules/default/defaultmodules.js'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
+    mode: 'a-st,o-rwx'
     # Remove the leading 'MichMich-MagicMirror-{HASH}/' directory in archive
     extra_opts: '--strip-components=1'
   register: _mirror_unpacked
@@ -35,7 +35,7 @@
 
 - name: 'unpack | cleanup unused archive files'
   ansible.builtin.file:
-    path:  '{{ item }}'
+    path: '{{ item }}'
     state: 'absent'
   loop:
     - '{{ _mirror_install_dir }}/CHANGELOG.MD'

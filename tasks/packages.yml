@@ -15,7 +15,7 @@
 
 - name: 'packages | install dependencies'
   ansible.builtin.apt:
-    name:  '{{ item }}'
+    name: '{{ item }}'
     state: 'latest'
     update_cache: true
     install_recommends: true
@@ -25,15 +25,15 @@
 
 - name: 'packages | add node repo key'
   ansible.builtin.apt_key:
-    url:   '{{ mirror_node_gpg_key_url }}'
-    id:    '{{ mirror_node_gpg_key_id }}'
+    url: '{{ mirror_node_gpg_key_url }}'
+    id: '{{ mirror_node_gpg_key_id }}'
     state: 'present'
 
 - name: 'packages | add node signed binary repo'
   ansible.builtin.apt_repository:
-    repo:   '{{ item }} [signed-by={{ mirror_node_gpg_key_id }}] https://deb.nodesource.com/node_{{ mirror_node_default_version }}.x {{ ansible_distribution_release }} main'
+    repo: '{{ item }} [signed-by={{ mirror_node_gpg_key_id }}] https://deb.nodesource.com/node_{{ mirror_node_default_version }}.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
-    state:    'present'
+    state: 'present'
     update_cache: true
   loop:
     - 'deb'
@@ -41,13 +41,13 @@
 
 - name: 'packages | nodejs'
   ansible.builtin.apt:
-    name:  'nodejs'
+    name: 'nodejs'
     state: 'latest'
 
 # Global package installation run as root.
 - name: 'packages | install nodejs global packages'
   community.general.npm:
-    name:   '{{ item }}'
+    name: '{{ item }}'
     global: true
-    state:  'latest'
+    state: 'latest'
   loop: '{{ mirror_default_global_nodejs_packages }}'

@@ -26,8 +26,8 @@ mirror_orientation: 'normal'
 
 site.yml
 ``` yaml
-- name:   'mirror'
-  hosts:  'mirror.example.com'
+- name: 'mirror'
+  hosts: 'mirror.example.com'
   become: true
   roles:
     - {{ debian_role }}

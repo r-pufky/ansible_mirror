@@ -12,7 +12,7 @@
 # * https://en.wikipedia.org/wiki/ISO_3166-2
 
 # User that mirror will run under. Assumes externally managed.
-mirror_user:  'mirror'
+mirror_user: 'mirror'
 mirror_group: 'mirror'
 
 # Create 'mirror' user if not detected? See: vars/main.yml.
@@ -43,7 +43,7 @@ mirror_background: ''
 ###############################################################################
 
 # Webserver listen address. Do not expose to network unless you are running a
-# headless server. '0.0.0.0' or '::' listens on all interfaces.
+# headless server. '0.0.0.0' or ':: ' listens on all interfaces.
 # Default: 'localhost'.
 mirror_address: 'localhost'
 

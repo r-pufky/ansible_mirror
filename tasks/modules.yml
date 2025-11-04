@@ -30,12 +30,12 @@
 # Reference: https://github.com/ansible/ansible/issues/51601
 - name: 'modules | setting custom module permissions'
   ansible.builtin.file:
-    path:    '{{ _mirror_install_dir }}/modules/{{ item.setting.module }}'
-    owner:   '{{ mirror_user }}'
-    group:   '{{ mirror_group }}'
-    mode:    'a-st,o-rwx'
+    path: '{{ _mirror_install_dir }}/modules/{{ item.setting.module }}'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
+    mode: 'a-st,o-rwx'
     recurse: true
-    state:   'directory'
+    state: 'directory'
   loop: '{{ _mirror_modules }}'
 
 - name: 'modules | install custom modules'

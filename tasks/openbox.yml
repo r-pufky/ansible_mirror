@@ -38,26 +38,26 @@
 
 - name: 'openbox | create openbox user settings'
   ansible.builtin.file:
-    dest:    '{{ _mirror_openbox_dir }}'
-    owner:   '{{ mirror_user }}'
-    group:   '{{ mirror_group }}'
+    dest: '{{ _mirror_openbox_dir }}'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
     mode:    0750
     recurse: true
-    state:   'directory'
+    state: 'directory'
 
 - name: 'openbox | set openbox environment'
   ansible.builtin.copy:
-    dest:    '{{ _mirror_openbox_dir }}/environment'
-    owner:   '{{ mirror_user }}'
-    group:   '{{ mirror_group }}'
+    dest: '{{ _mirror_openbox_dir }}/environment'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
     mode:    0640
     content: 'export DISPLAY=:0'
   notify: 'reboot mirror'
 
 - name: 'openbox | set openbox autostart'
   ansible.builtin.template:
-    src:   'autostart.j2'
-    dest:  '{{ _mirror_openbox_dir }}/autostart'
+    src: 'autostart.j2'
+    dest: '{{ _mirror_openbox_dir }}/autostart'
     owner: '{{ mirror_user }}'
     group: '{{ mirror_group }}'
     mode:  0640
@@ -65,12 +65,12 @@
 
 - name: 'openbox | set lightdm autostart'
   community.general.ini_file:
-    path:    '/etc/lightdm/lightdm.conf'
+    path: '/etc/lightdm/lightdm.conf'
     section: 'Seat:*'
-    option:  '{{ item.key }}'
-    value:   '{{ item.value }}'
-    owner:   '{{ mirror_user }}'
-    group:   '{{ mirror_group }}'
+    option: '{{ item.key }}'
+    value: '{{ item.value }}'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
     mode:    0640
   loop:
     - {key: 'autologin-user',         value: '{{ mirror_user }}'}
@@ -80,8 +80,8 @@
 
 - name: 'openbox | set custom background'
   ansible.builtin.copy:
-    src:   '{{ mirror_background }}'
-    dest:  '{{ _mirror_install_dir }}/background'
+    src: '{{ mirror_background }}'
+    dest: '{{ _mirror_install_dir }}/background'
     owner: '{{ mirror_user }}'
     group: '{{ mirror_group }}'
     mode:  0440

@@ -21,11 +21,11 @@
 
 - name: 'download | download mirror {{ _mirror_target }}'
   ansible.builtin.get_url:
-    url:    '{{ _mirror_url }}'
-    dest:   '{{ _mirror_archive }}'
+    url: '{{ _mirror_url }}'
+    dest: '{{ _mirror_archive }}'
     mode:   0644
-    owner:  '{{ mirror_user }}'
-    group:  '{{ mirror_group }}'
+    owner: '{{ mirror_user }}'
+    group: '{{ mirror_group }}'
   register: _mirror_download
   until: _mirror_download is succeeded
   retries: 5
